@@ -1,8 +1,8 @@
-# Gestion du transport du personnel
+# EMPLOGO
 
 ## Présentation
 
-**Gestion du transport du personnel** est un projet universitaire visant à développer une application desktop permettant de faciliter l'organisation et le suivi du transport des employés d'une entreprise.
+**EMPLOGO** est un projet universitaire de gestion du transport du personnel ,visant à développer une application desktop permettant de faciliter l'organisation et le suivi du transport des employés d'une entreprise.
 
 L'application a pour objectif de centraliser les informations relatives aux employés, aux bus, aux chauffeurs, aux trajets et aux inscriptions, tout en facilitant le travail du responsable du transport.
 
