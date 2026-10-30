@@ -4,8 +4,10 @@ Version JavaFX (Java pur + CSS) de la maquette Figma Make « TransportPro Deskto
 
 ## Lancer
 Prérequis : JDK 17+ et Maven.
-
-    mvn javafx:run
+# commend pour entre le directory de javafx
+cd "C:\javaFX333\files(1)\transportpro-javafx"
+#run code de javaFX
+ & "C:\apache-maven-3.9.16-bin\apache-maven-3.9.16\bin\mvn.cmd" javafx:run
 
 Connexion de démonstration : `transport.resp` / `transportpro` (mot de passe `erreur` = test de l'état d'erreur).
 Le sélecteur en haut à droite permet de changer de profil (Responsable / Administrateur / Chauffeur).
