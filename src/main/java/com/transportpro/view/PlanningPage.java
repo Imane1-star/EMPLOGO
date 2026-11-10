@@ -1,5 +1,6 @@
-package com.transportpro;
+package com.transportpro.view;
 
+import com.transportpro.Ctx;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;

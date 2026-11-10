@@ -1,5 +1,8 @@
-package com.transportpro;
+package com.transportpro.view;
 
+import com.transportpro.Ctx;
+import com.transportpro.Page;
+import com.transportpro.controller.MainController;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,6 +32,10 @@ public class AppShell extends StackPane implements Ctx {
     private String role;
     private Page page;
     private final Runnable onLogout;
+
+    // ✅ NOUVEAU : controller injecté
+    private final MainController controller = new MainController(this);
+
 
     private final VBox navBox = new VBox(2);
     private final Label crumb = Ui.label("", "crumb");
@@ -177,7 +184,7 @@ public class AppShell extends StackPane implements Ctx {
 
         Node content = switch (p) {
             case DASHBOARD -> DashboardPage.build(this);
-            case EMPLOYEES, BUSES, DRIVERS, TRIPS, INCIDENTS, ACCOUNTS -> ListPages.build(p, this);
+            case EMPLOYEES, BUSES, DRIVERS, TRIPS, INCIDENTS, ACCOUNTS -> ListPages.build(p, this , controller);
             case ASSIGNMENTS -> AssignmentsPage.build(this);
             case REGISTRATIONS -> RegistrationsPage.build(this);
             case ATTENDANCE -> AttendancePage.build(this);

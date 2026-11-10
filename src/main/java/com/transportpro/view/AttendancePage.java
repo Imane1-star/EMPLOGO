@@ -1,5 +1,7 @@
-package com.transportpro;
+package com.transportpro.view;
 
+import com.transportpro.Ctx;
+import com.transportpro.Data;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

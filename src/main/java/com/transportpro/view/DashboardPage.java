@@ -1,5 +1,6 @@
-package com.transportpro;
+package com.transportpro.view;
 
+import com.transportpro.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;

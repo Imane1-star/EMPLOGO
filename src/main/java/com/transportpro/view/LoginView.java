@@ -1,4 +1,4 @@
-package com.transportpro;
+package com.transportpro.view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

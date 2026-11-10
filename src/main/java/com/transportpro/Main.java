@@ -1,5 +1,6 @@
 package com.transportpro;
 
+import com.transportpro.view.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;

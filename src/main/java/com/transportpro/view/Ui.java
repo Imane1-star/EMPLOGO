@@ -1,4 +1,4 @@
-package com.transportpro;
+package com.transportpro.view;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
@@ -237,7 +237,7 @@ public final class Ui {
     public static TableView<String[]> table(String[] headers, String[][] rows, int badgeCol, Runnable onRow) {
         TableView<String[]> tv = new TableView<>();
         tv.getStyleClass().add("data-table");
-        tv.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tv.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
         tv.setFixedCellSize(46);
 
         for (int i = 0; i < headers.length; i++) {

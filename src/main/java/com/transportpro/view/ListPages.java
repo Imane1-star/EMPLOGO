@@ -1,5 +1,7 @@
+package com.transportpro.view;
 
-package com.transportpro;
+import com.transportpro.controller.MainController;
+import com.transportpro.model.Employe;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,6 +11,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import com.transportpro.*;
+
+import java.util.List;
 /** Écrans « liste » : Employés, Bus, Chauffeurs, Trajets, Incidents, Comptes. */
 public final class ListPages {
     private ListPages() {}
@@ -16,12 +21,16 @@ public final class ListPages {
     private record Cfg(String action, String[] headers, String[][] rows,
                        int badgeCol, String note, int total) {}
 
-    public static Node build(Page p, Ctx ctx) {
+    public static Node build(Page p, Ctx ctx, MainController controller) {
         Cfg c = switch (p) {
 
             // Employés : données chargées depuis MariaDB
             case EMPLOYEES -> {
-                String[][] rows = loadEmployees();
+                // ✅ Passer par le controller, pas par le DAO
+                List<Employe> employes = controller.chargerEmployes();
+                String[][] rows = employes.stream()
+                        .map(ListPages::employeToRow)
+                        .toArray(String[][]::new);
 
                 yield new Cfg("Ajouter un employé",
                         new String[]{"ID", "Nom", "Téléphone",
@@ -117,27 +126,16 @@ public final class ListPages {
         return Ui.page(card);
     }
 
-    // Charger les employés depuis la base de données
-    private static String[][] loadEmployees() {
-        try {
-            return new EmployeeDAO()
-                    .getAllEmployees()
-                    .toArray(new String[0][]);
-
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-
-            javafx.scene.control.Alert alert =
-                    new javafx.scene.control.Alert(
-                            javafx.scene.control.Alert.AlertType.ERROR);
-
-            alert.setTitle("Erreur de base de données");
-            alert.setHeaderText("Impossible de charger les employés");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-
-            return new String[0][];
-        }
+    
+    // ----- Mapper Model → String[] pour l'affichage -----
+    private static String[] employeToRow(Employe e) {
+        return new String[]{
+                String.valueOf(e.getIdEmploye()),
+                e.getNomComplet(),
+                e.getTelephone() == null ? "—" : e.getTelephone(),
+                e.getAdresse() == null ? "—" : e.getAdresse(),
+                e.isActif() ? "Actif" : "Inactif"
+        };
     }
 
     private static HBox pagination(int shown, int total) {
