@@ -55,7 +55,7 @@ Projet réalisé par :
 
 **Encadrant :** Pr. Youssef ES-SAADY
 
-**Établissement :** Faculté Polydisciplinaire de Taroudant
+**Établissement :** Faculté  de sciences Appliquées Taroudant
 
 **Formation :** Licence Génie Informatique – Semestre 5
 
