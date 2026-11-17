@@ -49,6 +49,14 @@ public class MainController {
             ctx.toast("Échec ajout : " + ex.getMessage());
         }
     }
+     void modifierEmploye(Employe e) {
+        try {
+            employeDAO.update(e);
+            ctx.toast("Employé modifié avec succès");
+        } catch (SQLException ex) {
+            ctx.toast("Échec modification : " + ex.getMessage());
+        }
+    }
 
     public void supprimerEmploye(int id) {
         try {
