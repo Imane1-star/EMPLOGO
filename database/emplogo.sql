@@ -395,7 +395,7 @@ CREATE TABLE `incident` (
   `gravite` enum('FAIBLE','MOYENNE','ELEVEE','CRITIQUE') NOT NULL,
   `description` text DEFAULT NULL,
   `date_incident` datetime NOT NULL,
-  `mode_declaration` enum('APPLICATION','TELEPHONE','EMAIL','SUR_PLACE') NOT NULL DEFAULT 'APPLICATION',
+  `mode_declaration` enum('APPLICATION','TELEPHONE','EMAIL','SUR_PLACE','RAPPORT_PAPIER','SIGNALEMENT_CHAUFFEUR') NOT NULL DEFAULT 'APPLICATION',
   `statut_traitement` enum('OUVERT','EN_COURS','RESOLU','CLOS') NOT NULL DEFAULT 'OUVERT'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

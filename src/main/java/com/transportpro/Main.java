@@ -1,5 +1,8 @@
 package com.transportpro;
 
+import com.transportpro.ui.AppShell;
+import com.transportpro.ui.LoginView;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
