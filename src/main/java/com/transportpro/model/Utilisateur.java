@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * Classe de base représentant un utilisateur du système.
- * Héritée par Administrateur et ResponsableTransport.
+ * Héritée par Administrateur et ResponsableTransport et Chauffeur.
  */
 public class Utilisateur {
 

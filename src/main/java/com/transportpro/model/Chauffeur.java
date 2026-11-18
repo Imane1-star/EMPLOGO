@@ -5,10 +5,9 @@ import com.transportpro.model.enums.TypeIncident;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import com.transportpro.model.enums.Role;
 
-public class Chauffeur {
-
-    private int idChauffeur;
+public class Chauffeur extends Utilisateur{
     private String nom;
     private String telephone;
     private String numeroPermis;
@@ -16,11 +15,13 @@ public class Chauffeur {
     private List<Trajet> trajets = new ArrayList<>();
 
     public Chauffeur() {
+        super();
+        setRole(Role.CHAUFFEUR);
     }
 
-    public Chauffeur(int idChauffeur, String nom, String telephone,
+    public Chauffeur(int idUtilisateur,String login , String motDePasseHache, boolean actif, Role role, String nom, String telephone,
                      String numeroPermis, boolean disponible) {
-        this.idChauffeur = idChauffeur;
+        super(idUtilisateur, login, motDePasseHache, actif, role);
         this.nom = nom;
         this.telephone = telephone;
         this.numeroPermis = numeroPermis;
@@ -41,8 +42,6 @@ public class Chauffeur {
     }
 
     // ---- Getters / Setters ----
-    public int getIdChauffeur() { return idChauffeur; }
-    public void setIdChauffeur(int idChauffeur) { this.idChauffeur = idChauffeur; }
 
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }
