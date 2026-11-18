@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+*.log
+database/backups/
+NOT COMMIT/
+/emplogo.sql
+/emplogo_test*.sql
