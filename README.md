@@ -31,7 +31,6 @@ L'application a pour objectif de centraliser les informations relatives aux empl
 | Java  | Langage de programmation |
 | JavaFX | Création des interfaces graphiques |
 | Maven | Gestion du projet et des dépendances |
-| Scene Builder | Conception des interfaces |
 | Figma | Création des maquettes |
 | UML | Modélisation du système |
 | Git & GitHub | Gestion des versions et collaboration |
@@ -55,7 +54,7 @@ Projet réalisé par :
 
 **Encadrant :** Pr. Youssef ES-SAADY
 
-**Établissement :** Faculté  de sciences Appliquées Taroudant
+**Établissement :** Faculté  des sciences Appliquées Taroudant
 
 **Formation :** Licence Génie Informatique – Semestre 5
 
