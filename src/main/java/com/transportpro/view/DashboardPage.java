@@ -19,12 +19,15 @@ import javafx.scene.shape.Circle;
 public final class DashboardPage {
     private DashboardPage() {}
 
-    public static Node build(Ctx ctx) {
-        // --- actions rapides
+    public static Node build(Ctx ctx, com.transportpro.controller.MainController controller) {
+        // --- actions rapides : vrais formulaires, enregistrés en base puis affichage de la page concernée
         HBox quick = new HBox(8, Ui.spacer(),
-                Ui.button("Nouveau trajet", "primary", "plus", () -> ctx.openModal("Créer un trajet")),
-                Ui.button("Nouvel employé", "secondary", "plus", () -> ctx.openModal("Ajouter un employé")),
-                Ui.button("Enregistrer un incident", "soft", null, () -> ctx.openModal("Enregistrer un incident")));
+                Ui.button("Nouveau trajet", "primary", "plus", () -> AffectationDialog.showAdd(controller)
+                        .filter(controller::ajouterAffectation).ifPresent(a -> ctx.navigate(Page.TRIPS))),
+                Ui.button("Nouvel employé", "secondary", "plus", () -> EmployeDialog.showAdd()
+                        .filter(controller::ajouterEmploye).ifPresent(e -> ctx.navigate(Page.EMPLOYEES))),
+                Ui.button("Enregistrer un incident", "soft", null, () -> IncidentDialog.showAdd(controller, ctx.isDriver())
+                        .filter(controller::ajouterIncident).ifPresent(i -> ctx.navigate(Page.INCIDENTS))));
 
         // --- bandeau « points d'attention »
         HBox alert = new HBox(22,

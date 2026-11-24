@@ -9,6 +9,7 @@ public class Employe {
     private String matricule;
     private String nom;
     private String prenom;
+    private String email; 
     private String telephone;
     private String adresse;             // joue le rôle de "point d'embarquement"
     private String departement;
@@ -32,12 +33,44 @@ public class Employe {
         this.actif = actif;
     }
 
+// Constructor with email
+    public Employe(int idEmploye, String matricule, String nom, String prenom,
+               String email, String telephone, String adresse,
+               String departement, LocalDate dateEmbauche, boolean actif) {
+    this.idEmploye = idEmploye;
+    this.matricule = matricule;
+    this.nom = nom;
+    this.prenom = prenom;
+    this.email = email;
+    this.telephone = telephone;
+    this.adresse = adresse;
+    this.departement = departement;
+    this.dateEmbauche = dateEmbauche;
+    this.actif = actif;
+}
+
     public void desactiver() {
         this.actif = false;
     }
 
     public String getNomComplet() {
         return nom + " " + prenom;
+    }
+
+    private static boolean blank(String s) {
+        return s == null || s.isBlank();
+    }
+
+    /** Retourne un message d'erreur, ou null si l'employé est valide (appelé avant INSERT / UPDATE). */
+    public String validate() {
+        if (blank(matricule)) return "Le matricule est obligatoire.";
+        if (blank(nom)) return "Le nom est obligatoire.";
+        if (blank(prenom)) return "Le prénom est obligatoire.";
+        if (blank(email)) return "L'adresse e-mail est obligatoire.";
+        if (!email.trim().matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) return "L'adresse e-mail n'est pas valide.";
+        if (!blank(telephone) && !telephone.trim().matches("^[+0-9][0-9 .\\-]{5,19}$"))
+            return "Le téléphone n'est pas valide.";
+        return null;
     }
 
     // ---- getters / setters ----
@@ -53,6 +86,13 @@ public class Employe {
     public String getPrenom() { return prenom; }
     public void setPrenom(String prenom) { this.prenom = prenom; }
 
+    public String getEmail() {
+    return email;}
+public void setEmail(String email) {
+    this.email = email;
+}
+    
+    
     public String getTelephone() { return telephone; }
     public void setTelephone(String telephone) { this.telephone = telephone; }
 

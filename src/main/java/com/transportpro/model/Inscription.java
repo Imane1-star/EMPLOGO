@@ -34,6 +34,35 @@ public class Inscription {
         this.statutPresence = statut;
     }
 
+    // ---- statut de l'inscription (colonne inscription.statut) ----
+    private String statut = "CONFIRMEE";   // CONFIRMEE ou ANNULEE
+
+    public String getStatut() { return statut; }
+    public void setStatut(String statut) { this.statut = statut; }
+
+    public static String statutLabel(String code) {
+        if (code == null) return "";
+        return switch (code) {
+            case "CONFIRMEE" -> "Confirmée";
+            case "ANNULEE" -> "Annulée";
+            default -> code;
+        };
+    }
+
+    /** Id de l'employé inscrit (0 si aucun). */
+    public int getIdEmploye() { return employe == null ? 0 : employe.getIdEmploye(); }
+
+    /** Id du trajet planifié (= id_affectation), 0 si aucun. */
+    public int getIdAffectation() { return trajet == null ? 0 : trajet.getIdTrajet(); }
+
+    /** Retourne un message d'erreur, ou null si l'inscription est valide. */
+    public String validate() {
+        if (getIdEmploye() <= 0) return "Veuillez choisir un employé.";
+        if (getIdAffectation() <= 0) return "Veuillez choisir un trajet.";
+        if (!"CONFIRMEE".equals(statut) && !"ANNULEE".equals(statut)) return "Veuillez choisir un statut.";
+        return null;
+    }
+
     // ---- Getters / Setters ----
     public int getIdInscription() { return idInscription; }
     public void setIdInscription(int idInscription) { this.idInscription = idInscription; }

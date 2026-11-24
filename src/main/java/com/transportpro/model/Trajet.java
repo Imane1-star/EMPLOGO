@@ -22,6 +22,17 @@ public class Trajet {
     private Bus bus;                                         // 0..1
     private Chauffeur chauffeur;                             // 0..1
 
+    // Dans la base, un Trajet daté correspond à une ligne de la table « affectation » :
+    // idTrajet = id_affectation, et la ligne de transport (table trajet) donne nomLigne / destination.
+    private String nomLigne;
+    private LocalTime heureArrivee;
+
+    public String getNomLigne() { return nomLigne; }
+    public void setNomLigne(String nomLigne) { this.nomLigne = nomLigne; }
+
+    public LocalTime getHeureArrivee() { return heureArrivee; }
+    public void setHeureArrivee(LocalTime heureArrivee) { this.heureArrivee = heureArrivee; }
+
     public Trajet() {
     }
 
