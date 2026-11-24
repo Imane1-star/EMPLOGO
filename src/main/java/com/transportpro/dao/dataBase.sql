@@ -546,14 +546,14 @@ INSERT INTO role_permission (id_role, id_permission) VALUES
 -- 4.4 Employés (Hassan Idrissi sera désactivé plus bas, après ses inscriptions)
 INSERT INTO employe (id_employe, matricule, nom, prenom, email, telephone, adresse, departement, date_embauche, actif) VALUES
 (1, 'EMP001', 'Benali', 'Karim', 'karim.benali@employgo.test', '0600000001', '12 rue des Acacias', 'Direction', '2015-03-02', 1),
-(2, 'EMP002', 'Martin', 'Sophie', 'sophie.martin@employgo.test', '0600000002', '8 avenue de la Gare', 'Ressources humaines', '2017-09-11'),
+(2, 'EMP002', 'Martin', 'Sophie', 'sophie.martin@employgo.test', '0600000002', '8 avenue de la Gare', 'Ressources humaines', '2017-09-11', 1),
 (3, 'EMP003', 'Haddad', 'Youssef', 'youssef.haddad@employgo.test', '0600000003', '27 boulevard du Port', 'Transport', '2018-01-15', 1),
 (4, 'EMP004', 'Dubois', 'Marc', 'marc.dubois@employgo.test', '0600000004', '3 impasse des Lilas', 'Transport', '2016-06-20', 1),
 (5, 'EMP005', 'El Idrissi', 'Nadia', 'nadia.elidrissi@employgo.test', '0600000005', '45 rue Victor Hugo', 'Transport', '2019-04-08', 1),
 (6, 'EMP006', 'Lambert', 'Pierre', 'pierre.lambert@employgo.test', '0600000006', '16 rue du Marché', 'Transport', '2014-11-03', 1),
-(7, 'EMP007', 'Berrada', 'Amina', 'amina.berrada@employgo.test', '0600000007', '21 résidence Les Orangers', 'Comptabilité', '2020-02-17'),
+(7, 'EMP007', 'Berrada', 'Amina', 'amina.berrada@employgo.test', '0600000007', '21 résidence Les Orangers', 'Comptabilité', '2020-02-17', 1),
 (8, 'EMP008', 'Moreau', 'Julien', 'julien.moreau@employgo.test', '0600000008', '9 rue des Écoles', 'Informatique', '2021-05-03', 1),
-(9, 'EMP009', 'Cherkaoui', 'Salma', 'salma.cherkaoui@employgo.test', '0600000009', '34 avenue Mohammed V', 'Production', '2019-10-14'), 
+(9, 'EMP009', 'Cherkaoui', 'Salma', 'salma.cherkaoui@employgo.test', '0600000009', '34 avenue Mohammed V', 'Production', '2019-10-14', 1), 
 (10, 'EMP010', 'Leroy', 'Thomas', 'thomas.leroy@employgo.test', '0600000010', '5 allée des Pins', 'Logistique', '2022-01-10', 1),
 (11, 'EMP011', 'Benjelloun', 'Lina', 'lina.benjelloun@employgo.test', '0600000011', '18 rue de la Paix', 'Qualité', '2020-09-01', 1),
 (12, 'EMP012', 'Tazi', 'Omar', 'omar.tazi@employgo.test', '0600000012', '62 rue du Stade', 'Production', '2018-07-23', 1),
@@ -731,9 +731,26 @@ INSERT INTO maintenance (id_maintenance, id_bus, type, date_debut, date_fin, sta
 (3, 3, 'PREVENTIVE', '2026-11-20', '2026-11-22', 'PLANIFIEE'),
 (4, 2, 'CORRECTIVE', '2026-08-18', '2026-08-19', 'TERMINEE');
 -- 4.14 Incidents : les quatre modes de déclaration, avec et sans compte déclarant
-INSERT INTO incident (id_incident, id_affectation, id_compte, type, gravite, description, date_incident, statut, mode_declaration) 
-VALUE(1, 1, 5, 'RETARD', 'MINEURE', 'Retard d''environ 10 minutes dû à la circulation.', '2026-11-05 07:40:00'), 
-(2, 3, NULL, 'PANNE', 'MODEREE', 'Voyant moteur allumé, vérification demandée à l''atelier.', '2026-11-05 07:55:00'), 
-(3, 7, 3, 'COMPORTEMENT', 'MINEURE', 'Passager bruyant, rappel des règles effectué par le chauffeur.', '2026-11-06 07:30:00'), 
-(4, 9, NULL, 'AUTRE', 'MINEURE', 'Siège endommagé signalé sur formulaire papier.', '2026-11-06 17:20:00'), 
-(5, 8, 2, 'ACCIDENT', 'GRAVE', 'Accrochage léger au rond-point, constat amiable établi.', '2026-11-06 08:05:00') 
+INSERT INTO incident
+(id_incident, id_affectation, id_compte, type, gravite,
+ description, date_incident, statut, mode_declaration)
+VALUES
+(1, 1, 5, 'RETARD', 'MINEURE',
+ 'Retard d''environ 10 minutes dû à la circulation.',
+ '2026-11-05 07:40:00', 'OUVERT', 'APPLICATION'),
+
+(2, 3, NULL, 'PANNE', 'MODEREE',
+ 'Voyant moteur allumé, vérification demandée à l''atelier.',
+ '2026-11-05 07:55:00', 'OUVERT', 'TELEPHONE'),
+
+(3, 7, 3, 'COMPORTEMENT', 'MINEURE',
+ 'Passager bruyant, rappel des règles effectué par le chauffeur.',
+ '2026-11-06 07:30:00', 'OUVERT', 'APPLICATION'),
+
+(4, 9, NULL, 'AUTRE', 'MINEURE',
+ 'Siège endommagé signalé sur formulaire papier.',
+ '2026-11-06 17:20:00', 'OUVERT', 'RAPPORT_PAPIER'),
+
+(5, 8, 2, 'ACCIDENT', 'GRAVE',
+ 'Accrochage léger au rond-point, constat amiable établi.',
+ '2026-11-06 08:05:00', 'OUVERT', 'APPLICATION');

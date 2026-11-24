@@ -176,8 +176,8 @@ public final class Ui {
     public static String badgeKind(String text) {
         String t = text.toLowerCase();
         boolean negative = t.contains("indisponible") || t.contains("inactif");
-        if (!negative && t.matches(".*(disponible|actif|terminé|présent|acceptée).*")) return "success";
-        if (t.matches(".*(maintenance|retard|planifié|affecter).*")) return "warning";
+        if (!negative && t.matches(".*(disponible|actif|terminé|présent|acceptée|confirmée|résolu|clôturé).*")) return "success";
+        if (t.matches(".*(maintenance|retard|planifié|affecter|ouvert|en cours|congé|suspendu).*")) return "warning";
         if (t.matches(".*(hors|panne|annulé|inactif|indisponible|absent).*")) return "danger";
         return "neutral";
     }

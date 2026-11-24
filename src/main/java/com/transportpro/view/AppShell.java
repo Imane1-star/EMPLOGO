@@ -176,6 +176,22 @@ public class AppShell extends StackPane implements Ctx {
     }
 
     @Override
+    public String role() {
+        return role;
+    }
+
+    /** Erreur : fenêtre bien visible (la notification verte est réservée aux succès). */
+    @Override
+    public void error(String message) {
+        javafx.scene.control.Alert a = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        a.setTitle("Erreur");
+        a.setHeaderText(null);
+        a.setContentText(message);
+        a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        a.showAndWait();
+    }
+
+    @Override
     public void navigate(Page p) {
         page = p;
         refreshNav();
@@ -183,10 +199,10 @@ public class AppShell extends StackPane implements Ctx {
         title.setText(p.title);
 
         Node content = switch (p) {
-            case DASHBOARD -> DashboardPage.build(this);
+            case DASHBOARD -> DashboardPage.build(this, controller);
             case EMPLOYEES, BUSES, DRIVERS, TRIPS, INCIDENTS, ACCOUNTS -> ListPages.build(p, this , controller);
-            case ASSIGNMENTS -> AssignmentsPage.build(this);
-            case REGISTRATIONS -> RegistrationsPage.build(this);
+            case ASSIGNMENTS -> AssignmentsPage.build(this, controller);
+            case REGISTRATIONS -> RegistrationsPage.build(this, controller);
             case ATTENDANCE -> AttendancePage.build(this);
             case REPORTS -> ReportsPage.build(this);
             case ROLES -> RolesPage.build(this);
@@ -211,15 +227,18 @@ public class AppShell extends StackPane implements Ctx {
         head.setAlignment(Pos.CENTER_LEFT);
         head.getStyleClass().add("modal-head");
 
-        VBox body = new VBox(formBody(titleText));
+        // Formulaire de maquette : ce module n'est pas encore relié à la base, rien n'est enregistré.
+        Label notice = Ui.label("Aperçu : ce formulaire n’est pas encore relié à la base de données. "
+                + "Aucune donnée ne sera enregistrée.", "info-text");
+        notice.setWrapText(true);
+        HBox banner = new HBox(8, Ui.icon("incidents", 17, "#8A5A00"), notice);
+        banner.getStyleClass().add("info-banner");
+        banner.setAlignment(Pos.CENTER_LEFT);
+
+        VBox body = new VBox(14, banner, formBody(titleText));
         body.getStyleClass().add("modal-body");
 
-        HBox foot = new HBox(10,
-                Ui.button("Annuler", "secondary", null, close),
-                Ui.button("Enregistrer", "primary", null, () -> {
-                    close.run();
-                    toast(titleText + " — enregistré avec succès");
-                }));
+        HBox foot = new HBox(10, Ui.button("Fermer", "primary", null, close));
         foot.setAlignment(Pos.CENTER_RIGHT);
         foot.getStyleClass().add("modal-foot");
 
