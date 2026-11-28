@@ -5,8 +5,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.transportpro</groupId>
-    <artifactId>transportpro</artifactId>
+    <groupId>com.emplogo</groupId>
+    <artifactId>emplogo</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -48,7 +48,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.transportpro.Main</mainClass>
+                    <mainClass>com.emplogo.Main</mainClass>
                 </configuration>
             </plugin>
 
